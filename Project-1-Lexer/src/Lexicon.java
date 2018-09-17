@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.lang.String;
@@ -116,5 +117,37 @@ public class Lexicon
         { 
             return false;
         } 
+    }
+
+    // Parser for Matt
+    public ArrayList<String> parser(String stringToParsed)
+    {
+        int j;
+        ArrayList<String> arrayList = new ArrayList<String>();
+        for (int i = 0; i < stringToParsed.length(); i++)
+        {
+            j = i+1;
+            if (stringToParsed.charAt(i) == '/')
+            {
+                if (j < stringToParsed.length())
+                {
+                    if (stringToParsed.charAt(j) == '/')
+                    {
+                        break;
+                    }
+                }
+                arrayList.add(Character.toString(stringToParsed.charAt(i)));      
+            }
+            else if (Character.isLetter(stringToParsed.charAt(i)))
+            {
+                while(Character.isLetter(stringToParsed.charAt(j)) || Character.isDigit(stringToParsed.charAt(j)))
+                {
+                    j++;
+                }
+                arrayList.add(stringToParsed.substring(i, j));
+                i = j - 1;
+            }
+        }
+        return arrayList;
     }
 }

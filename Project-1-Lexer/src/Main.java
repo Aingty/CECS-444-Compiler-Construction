@@ -4,6 +4,6 @@ public class Main
     {
         Lexicon lexer = new Lexicon();
 
-        System.out.println(lexer.getToken("ese21"));
+        System.out.println(lexer.parser("input testing2 input/"));
     }
 }
