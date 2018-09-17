@@ -4,6 +4,8 @@ public class Main
     {
         Lexicon lexer = new Lexicon();
 
-        System.out.println(lexer.parser("input testing2 input/"));
+        String inputFun = "    prog main  <= <> <<{ print( \"ASCII:\", \" A= \", 65, \" Z= \", 90 ); }";
+        System.out.println(lexer.parser(inputFun));
+
     }
 }

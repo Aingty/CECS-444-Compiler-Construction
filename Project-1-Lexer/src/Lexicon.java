@@ -140,13 +140,166 @@ public class Lexicon
             }
             else if (Character.isLetter(stringToParsed.charAt(i)))
             {
-                while(Character.isLetter(stringToParsed.charAt(j)) || Character.isDigit(stringToParsed.charAt(j)))
+                while(j < stringToParsed.length())
                 {
-                    j++;
+                    if (Character.isLetter(stringToParsed.charAt(j)) || Character.isDigit(stringToParsed.charAt(j)))
+                    {
+                        j++;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
                 arrayList.add(stringToParsed.substring(i, j));
                 i = j - 1;
             }
+            else if (Character.isDigit(stringToParsed.charAt(i)))
+            {
+                while(j < stringToParsed.length())
+                {
+                    if (stringToParsed.charAt(j) == '.' || Character.isDigit(stringToParsed.charAt(j)))
+                    {
+                        j++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                arrayList.add(stringToParsed.substring(i, j));
+                i = j - 1;
+            }
+            else if (stringToParsed.charAt(i) == ' ')
+            {
+                continue;
+            }
+            else
+            {
+                switch (stringToParsed.charAt(i))
+                {
+                    case '-':
+                        if (j < stringToParsed.length())
+                        {
+                            if (stringToParsed.charAt(j) == '>')
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            }
+                            else
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        }
+                        else
+                        {
+                            arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                        }
+                        break;
+                    case '=':
+                        if (j < stringToParsed.length())
+                        {
+                            if (stringToParsed.charAt(j) == '=')
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            }
+                            else
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        }
+                        else
+                        {
+                            arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                        }
+                        break;
+                    case '!':
+                        if (j < stringToParsed.length())
+                        {
+                            if (stringToParsed.charAt(j) == '=')
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            }
+                            else
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        }
+                        else
+                        {
+                            arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                        }
+                        break;
+                    case '<':
+                        if (j < stringToParsed.length())
+                        {
+                            if (stringToParsed.charAt(j) == '=' || stringToParsed.charAt(j) == '<')
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            }
+                            else
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        }
+                        else
+                        {
+                            arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                        }
+                        break;
+                    case '>':
+                        if (j < stringToParsed.length())
+                        {
+                            if (stringToParsed.charAt(j) == '=' || stringToParsed.charAt(j) == '>')
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            }
+                            else
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        }
+                        else
+                        {
+                            arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                        }
+                        break;
+                    case '"':
+                        boolean parenthesisAbsent = true;
+                        while(j < stringToParsed.length())
+                        {
+                            if (stringToParsed.charAt(j) != '"')
+                            {
+                                j++;
+                            }
+                            else
+                            {
+                                parenthesisAbsent = false;
+                                break;
+                            }
+                        }
+                        if (parenthesisAbsent)
+                        {
+                            System.out.println("DID NOT FINE CLOSING PARENTHESIS!!!");
+                            System.exit(0);
+                        }
+                        arrayList.add(stringToParsed.substring(i, j+1));
+                        i = j;
+                        break;
+                    default:
+                        arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                }
+            }
+
         }
         return arrayList;
     }
