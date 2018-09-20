@@ -53,7 +53,7 @@ public class Lexicon
         map.put(57, ">>");
     }
 
-    public int getToken(String parsedString)
+    private int getToken(String parsedString)
     {
         if (parsedString.charAt(0) == '"' && parsedString.charAt(parsedString.length() - 1) == '"')
         {
@@ -124,7 +124,7 @@ public class Lexicon
     }
 
     // Parser for Matt
-    public ArrayList<String> parser(String stringToParsed)
+    private ArrayList<String> parser(String stringToParsed)
     {
         int j;
         ArrayList<String> arrayList = new ArrayList<String>();
