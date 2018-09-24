@@ -121,11 +121,12 @@ public class Lexicon
         }
     }
 
-    // Parser for Matt
+    // Parser for printFormat
     public ArrayList<String> parser(String stringToParsed) 
     {
         int j;
         ArrayList<String> arrayList = new ArrayList<String>();
+        stringToParsed = stringToParsed.replace("\t", " ");
         for (int i = 0; i < stringToParsed.length(); i++) 
         {
             j = i + 1;
