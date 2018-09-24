@@ -1,0 +1,44 @@
+(Token= 10 line= 1 str= "prog")
+(Token= 11 line= 1 str= "main")
+(Token= 33 line= 1 str= "{")
+
+(Token= 2 line= 2 str= "pi")
+(Token= 45 line= 2 str= "=")
+(Token= 4 line= 2 str= "3.14" float= 3.14)
+(Token= 7 line= 2 str= ";")
+
+(Token= 23 line= 3 str= "print")
+(Token= 37 line= 3 str= "(")
+(Token= 5 line= 3 str= "Input radius> ")
+(Token= 38 line= 3 str= ")")
+(Token= 7 line= 3 str= ";")
+
+(Token= 2 line= 4 str= "rx")
+(Token= 45 line= 4 str= "=")
+(Token= 22 line= 4 str= "input")
+(Token= 37 line= 4 str= "(")
+(Token= 15 line= 4 str= "float")
+(Token= 38 line= 4 str= ")")
+(Token= 7 line= 4 str= ";")
+
+(Token= 2 line= 5 str= "circum")
+(Token= 45 line= 5 str= "=")
+(Token= 3 line= 5 str= "2" int= 2)
+(Token= 41 line= 5 str= "*")
+(Token= 2 line= 5 str= "pi")
+(Token= 41 line= 5 str= "*")
+(Token= 2 line= 5 str= "rx")
+(Token= 7 line= 5 str= ";")
+
+(Token= 23 line= 6 str= "print")
+(Token= 37 line= 6 str= "(")
+(Token= 5 line= 6 str= "Circumf= ")
+(Token= 6 line= 6 str= ",")
+(Token= 2 line= 6 str= "circum")
+(Token= 38 line= 6 str= ")")
+(Token= 7 line= 6 str= ";")
+
+(Token= 34 line= 7 str= "}")
+
+(Token= 0 line= 7 str= "")
+
