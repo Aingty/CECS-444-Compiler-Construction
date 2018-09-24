@@ -3,11 +3,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.lang.String;
 
-public class Lexicon {
+public class Lexicon 
+{
 
     private Map<Integer, String> map = new HashMap<Integer, String>();
 
-    public Lexicon() {
+    public Lexicon() 
+    {
         map.put(6, ",");
         map.put(7, ";");
         map.put(10, "prog");
@@ -51,25 +53,42 @@ public class Lexicon {
         map.put(57, ">>");
     }
 
-    public int getToken(String parsedString) {
-        if (parsedString.charAt(0) == '"' && parsedString.charAt(parsedString.length() - 1) == '"') {
+    public int getToken(String parsedString) 
+    {
+        if (parsedString.charAt(0) == '"' && parsedString.charAt(parsedString.length() - 1) == '"') 
+        {
             return 5;
-        } else if (checkInt(parsedString)) {
+        } 
+        else if (checkInt(parsedString)) 
+        {
             return 3;
-        } else if (checkFloat(parsedString)) {
+        } 
+        else if (checkFloat(parsedString)) 
+        {
             return 4;
-        } else if (parsedString.charAt(0) == '$') {
+        } 
+        else if (parsedString.charAt(0) == '$') 
+        {
             return 0;
-        } else {
-            if (map.containsValue(parsedString)) {
-                for (int key : map.keySet()) {
-                    if (map.get(key).equalsIgnoreCase(parsedString)) {
+        } 
+        else 
+        {
+            if (map.containsValue(parsedString)) 
+            {
+                for (int key : map.keySet()) 
+                {
+                    if (map.get(key).equalsIgnoreCase(parsedString)) 
+                    {
                         return key;
                     }
                 }
-            } else if (Character.isLetter(parsedString.charAt(0)) || parsedString.charAt(0) == '_') {
+            } 
+            else if (Character.isLetter(parsedString.charAt(0)) || parsedString.charAt(0) == '_') 
+            {
                 return 2;
-            } else {
+            } 
+            else 
+            {
                 return 99;
             }
         }
@@ -77,146 +96,209 @@ public class Lexicon {
     }
 
     // Method used to check if string is an integer by doing try-catch
-    private static boolean checkInt(String givenString) {
-        try {
+    private static boolean checkInt(String givenString) 
+    {
+        try 
+        {
             Integer.parseInt(givenString);
             return true;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e) 
+        {
             return false;
         }
     }
 
     // Method used to check if string is a float by doing try-catch
-    private static boolean checkFloat(String giveString) {
-        try {
+    private static boolean checkFloat(String giveString) 
+    {
+        try 
+        {
             Float.parseFloat(giveString);
             return true;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e) 
+        {
             return false;
         }
     }
 
     // Parser for Matt
-    public ArrayList<String> parser(String stringToParsed) {
+    public ArrayList<String> parser(String stringToParsed) 
+    {
         int j;
         ArrayList<String> arrayList = new ArrayList<String>();
-        for (int i = 0; i < stringToParsed.length(); i++) {
+        for (int i = 0; i < stringToParsed.length(); i++) 
+        {
             j = i + 1;
-            if (stringToParsed.charAt(i) == '/') {
-                if (j < stringToParsed.length()) {
-                    if (stringToParsed.charAt(j) == '/') {
+            if (stringToParsed.charAt(i) == '/') 
+            {
+                if (j < stringToParsed.length()) 
+                {
+                    if (stringToParsed.charAt(j) == '/') 
+                    {
                         break;
                     }
                 }
                 arrayList.add(Character.toString(stringToParsed.charAt(i)));
-            } else if (Character.isLetter(stringToParsed.charAt(i))) {
-                while (j < stringToParsed.length()) {
-                    if (Character.isLetter(stringToParsed.charAt(j)) || Character.isDigit(stringToParsed.charAt(j))) {
+            } 
+            else if (Character.isLetter(stringToParsed.charAt(i))) 
+            {
+                while (j < stringToParsed.length()) 
+                {
+                    if (Character.isLetter(stringToParsed.charAt(j)) || Character.isDigit(stringToParsed.charAt(j))) 
+                    {
                         j++;
-                    } else {
+                    } 
+                    else 
+                    {
                         break;
                     }
                 }
                 arrayList.add(stringToParsed.substring(i, j));
                 i = j - 1;
-            } else if (Character.isDigit(stringToParsed.charAt(i))) {
-                while (j < stringToParsed.length()) {
-                    if (stringToParsed.charAt(j) == '.' || Character.isDigit(stringToParsed.charAt(j))) {
+            } 
+            else if (Character.isDigit(stringToParsed.charAt(i))) 
+            {
+                while (j < stringToParsed.length()) 
+                {
+                    if (stringToParsed.charAt(j) == '.' || Character.isDigit(stringToParsed.charAt(j)))
+                    {
                         j++;
-                    } else {
+                    } 
+                    else 
+                    {
                         break;
                     }
                 }
                 arrayList.add(stringToParsed.substring(i, j));
                 i = j - 1;
-            } else if (stringToParsed.charAt(i) == ' ') {
+            } 
+            else if (stringToParsed.charAt(i) == ' ') 
+            {
                 continue;
-            } else {
-                switch (stringToParsed.charAt(i)) {
-                case '-':
-                    if (j < stringToParsed.length()) {
-                        if (stringToParsed.charAt(j) == '>') {
-                            j++;
-                            arrayList.add(stringToParsed.substring(i, j));
-                            i = j - 1;
-                        } else {
+            } 
+            else 
+            {
+                switch (stringToParsed.charAt(i)) 
+                {
+                    case '-':
+                        if (j < stringToParsed.length()) 
+                        {
+                            if (stringToParsed.charAt(j) == '>') 
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            } 
+                            else 
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        } 
+                        else 
+                        {
                             arrayList.add(Character.toString(stringToParsed.charAt(i)));
                         }
-                    } else {
-                        arrayList.add(Character.toString(stringToParsed.charAt(i)));
-                    }
-                    break;
-                case '=':
-                    if (j < stringToParsed.length()) {
-                        if (stringToParsed.charAt(j) == '=') {
-                            j++;
-                            arrayList.add(stringToParsed.substring(i, j));
-                            i = j - 1;
-                        } else {
+                        break;
+                    case '=':
+                        if (j < stringToParsed.length()) 
+                        {
+                            if (stringToParsed.charAt(j) == '=') 
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            } 
+                            else 
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        } 
+                        else 
+                        {
                             arrayList.add(Character.toString(stringToParsed.charAt(i)));
                         }
-                    } else {
-                        arrayList.add(Character.toString(stringToParsed.charAt(i)));
-                    }
-                    break;
-                case '!':
-                    if (j < stringToParsed.length()) {
-                        if (stringToParsed.charAt(j) == '=') {
-                            j++;
-                            arrayList.add(stringToParsed.substring(i, j));
-                            i = j - 1;
-                        } else {
+                        break;
+                    case '!':
+                        if (j < stringToParsed.length()) 
+                        {
+                            if (stringToParsed.charAt(j) == '=') 
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            } 
+                            else 
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        } 
+                        else 
+                        {
                             arrayList.add(Character.toString(stringToParsed.charAt(i)));
                         }
-                    } else {
-                        arrayList.add(Character.toString(stringToParsed.charAt(i)));
-                    }
-                    break;
-                case '<':
-                    if (j < stringToParsed.length()) {
-                        if (stringToParsed.charAt(j) == '=' || stringToParsed.charAt(j) == '<') {
-                            j++;
-                            arrayList.add(stringToParsed.substring(i, j));
-                            i = j - 1;
-                        } else {
+                        break;
+                    case '<':
+                        if (j < stringToParsed.length()) 
+                        {
+                            if (stringToParsed.charAt(j) == '=' || stringToParsed.charAt(j) == '<') 
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            } 
+                            else 
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        } 
+                        else 
+                        {
                             arrayList.add(Character.toString(stringToParsed.charAt(i)));
                         }
-                    } else {
-                        arrayList.add(Character.toString(stringToParsed.charAt(i)));
-                    }
-                    break;
-                case '>':
-                    if (j < stringToParsed.length()) {
-                        if (stringToParsed.charAt(j) == '=' || stringToParsed.charAt(j) == '>') {
-                            j++;
-                            arrayList.add(stringToParsed.substring(i, j));
-                            i = j - 1;
-                        } else {
+                        break;
+                    case '>':
+                        if (j < stringToParsed.length()) 
+                        {
+                            if (stringToParsed.charAt(j) == '=' || stringToParsed.charAt(j) == '>') 
+                            {
+                                j++;
+                                arrayList.add(stringToParsed.substring(i, j));
+                                i = j - 1;
+                            } 
+                            else 
+                            {
+                                arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                            }
+                        } 
+                        else 
+                        {
                             arrayList.add(Character.toString(stringToParsed.charAt(i)));
                         }
-                    } else {
-                        arrayList.add(Character.toString(stringToParsed.charAt(i)));
-                    }
-                    break;
-                case '"':
-                    boolean parenthesisAbsent = true;
-                    while (j < stringToParsed.length()) {
-                        if (stringToParsed.charAt(j) != '"') {
-                            j++;
-                        } else {
-                            parenthesisAbsent = false;
-                            break;
+                        break;
+                    case '"':
+                        boolean parenthesisAbsent = true;
+                        while (j < stringToParsed.length()) 
+                        {
+                            if (stringToParsed.charAt(j) != '"') 
+                            {
+                                j++;
+                            } 
+                            else 
+                            {
+                                parenthesisAbsent = false;
+                                break;
+                            }
                         }
-                    }
-                    if (parenthesisAbsent) {
-                        System.out.println("DID NOT FINE CLOSING PARENTHESIS!!!");
-                        System.exit(0);
-                    }
-                    arrayList.add(stringToParsed.substring(i, j + 1));
-                    i = j;
-                    break;
-                default:
-                    arrayList.add(Character.toString(stringToParsed.charAt(i)));
+                        if (parenthesisAbsent) 
+                        {
+                            System.out.println("DID NOT FINE CLOSING PARENTHESIS!!!");
+                            System.exit(0);
+                        }
+                        arrayList.add(stringToParsed.substring(i, j + 1));
+                        i = j;
+                        break;
+                    default:
+                        arrayList.add(Character.toString(stringToParsed.charAt(i)));
                 }
             }
 
@@ -224,30 +306,33 @@ public class Lexicon {
         return arrayList;
     }
 
-    public String printFormat(String codeLine, int lineNum) {
-        ArrayList<String> tokens = parser(codeLine); // call Matt's parser, return array of Strings
+    public String printFormat(String codeLine, int lineNum) 
+    {
+        ArrayList<String> tokens = parser(codeLine);
         String lineToGive = "";
-        for (int i = 0; i < tokens.size(); i++) {
+        for (int i = 0; i < tokens.size(); i++) 
+        {
             int tval = getToken(tokens.get(i));
-            switch (tval) {
-            case 0:
-                lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= \"" + "\"" + ")" + "\n";
-                break;
-            case 3:
-                lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= \"" + tokens.get(i)
-                        + "\" int= " + tokens.get(i) + ")" + "\n";
-                break;
-            case 4:
-                lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= \"" + tokens.get(i)
-                        + "\" float= " + tokens.get(i) + ")" + "\n";
-                break;
-            case 5:
-                lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= " + tokens.get(i) + ")"
-                        + "\n";
-                break;
-            default:
-                lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= \"" + tokens.get(i) + "\")"
-                        + "\n";
+            switch (tval) 
+            {
+                case 0:
+                    lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= \"" + "\"" + ")" + "\n";
+                    break;
+                case 3:
+                    lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= \"" + tokens.get(i)
+                            + "\" int= " + tokens.get(i) + ")" + "\n";
+                    break;
+                case 4:
+                    lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= \"" + tokens.get(i)
+                            + "\" float= " + tokens.get(i) + ")" + "\n";
+                    break;
+                case 5:
+                    lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= " + tokens.get(i) + ")"
+                            + "\n";
+                    break;
+                default:
+                    lineToGive = lineToGive + "(Token= " + tval + " line= " + lineNum + " str= \"" + tokens.get(i) + "\")"
+                            + "\n";
             }
         }
         return lineToGive;
