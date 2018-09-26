@@ -280,7 +280,7 @@ public class Lexicon
                         boolean parenthesisAbsent = true;
                         while (j < stringToParsed.length()) 
                         {
-                            if (stringToParsed.charAt(j) != '"') 
+                            if (stringToParsed.charAt(j) != '"' || stringToParsed.charAt(j-1) == '\\') 
                             {
                                 j++;
                             } 
@@ -292,7 +292,7 @@ public class Lexicon
                         }
                         if (parenthesisAbsent) 
                         {
-                            System.out.println("DID NOT FINE CLOSING PARENTHESIS!!!");
+                            System.out.println("DID NOT FINE CLOSING QUOTATION!!!");
                             System.exit(0);
                         }
                         arrayList.add(stringToParsed.substring(i, j + 1));
