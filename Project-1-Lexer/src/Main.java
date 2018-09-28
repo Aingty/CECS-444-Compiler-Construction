@@ -1,3 +1,21 @@
+/**
+Team VOS:               Email:
+Sebastian Adame         sjadamem@gmail.com
+Darian Bezayiff         darrianbez@gmail.com
+Aingty Eung             aingtyeung@yahoo.com
+Angela Flores           Angfl97@gmail.com
+Matthew Nguyen          matthewvietnguyen@gmail.com
+
+The main reads input text files with written A4 Lexicon code. Every line is read
+individually and passed into the method printFormat() from the Lexicon class, where
+its contents will be converted into valid tokens and returned as a formatted String
+displaying the token ID, the line it was read from, and the token it represents.
+It is then written to a generated output file.
+
+The program will continue to ask the user if they want to continue to read files
+until they specify otherwise.
+**/
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -5,7 +23,7 @@ import java.io.Writer;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
         Lexicon lexer = new Lexicon();
         String line, lineToWrite, inputFile, outputFile, userRespone;
@@ -36,10 +54,10 @@ public class Main {
                 outputFile = outputFile + ".txt";
             }
 
-            try 
+            try
             {
                 reader = new Scanner(new File(inputFile));
-                do 
+                do
                 {
                     line = reader.nextLine();
                     lineToWrite = lineToWrite + lexer.printFormat(line, lineNum) + "\n";
@@ -47,19 +65,19 @@ public class Main {
                 } while (reader.hasNextLine());
                 lineToWrite = lineToWrite + lexer.printFormat("$", --lineNum);
                 reader.close();
-            } 
-            catch (FileNotFoundException e) 
+            }
+            catch (FileNotFoundException e)
             {
                 System.out.println("File does not exist!");
                 e.printStackTrace();
             }
-            try 
+            try
             {
                 writer = new PrintWriter(outputFile);
                 writer.println(lineToWrite);
                 writer.close();
-            } 
-            catch (FileNotFoundException e) 
+            }
+            catch (FileNotFoundException e)
             {
                 System.out.println("Could not write to file");
                 e.printStackTrace();
