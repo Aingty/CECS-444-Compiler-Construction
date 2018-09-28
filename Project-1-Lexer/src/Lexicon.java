@@ -1,3 +1,17 @@
+/*
+    Team VOS:                   Email:
+        Sebastian Adame         sjadamem@gmail.com
+        Darian Bezayiff         darrianbez@gmail.com
+        Aingty Eung             aingtyeung@yahoo.com
+        Angela Flores           Angfl97@gmail.com
+        Matthew Nguyen          matthewvietnguyen@gmail.com
+
+    Description:
+        This is the Lexicon class with a private variable Hashmap to store all Lexicon Code. 
+        The purpose for this object class is to provide the correct token id from a given 
+        string line. Addition functions, EX: checkInt() and checkFloat(), are used to determine
+        if a given string is an interger or float.
+*/
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
