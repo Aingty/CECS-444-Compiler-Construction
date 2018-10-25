@@ -24,6 +24,13 @@ public class Node
 
     public void display()
     {
-        
+        if (childrenList.isEmpty())
+        {
+            system.out.print(value);
+        }
+        else
+        {
+            system.out.print(value);
+        }
     }
 }
