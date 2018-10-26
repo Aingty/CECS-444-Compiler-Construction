@@ -22,15 +22,27 @@ public class Node
         childrenList = new ArrayList<Node>();
     }
 
-    public void display()
+    public void addChild(Node cNode)
     {
         if (childrenList.isEmpty())
         {
-            system.out.print(value);
+            childrenList.add(cNode);
         }
         else
         {
-            system.out.print(value);
+            //If we see that a child is a Terminal, then we add to list
+            // Else we recursively call addChild()
         }
     }
+
+    public String getValue()
+    {
+        return this.value;
+    }
+
+    public ArrayList<Node> getChildren()
+    {
+        return this.childrenList;
+    }
+
 }
