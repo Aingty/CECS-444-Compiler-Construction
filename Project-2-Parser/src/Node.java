@@ -22,16 +22,12 @@ public class Node
         childrenList = new ArrayList<Node>();
     }
 
-    public void addChild(Node cNode)
+    // Passing ArrayList due to assumption that children are build already
+    public void addChild(ArrayList<Node> cNode)
     {
-        if (childrenList.isEmpty())
+        for (int i = 0; i < cNode.size(); i++)
         {
-            childrenList.add(cNode);
-        }
-        else
-        {
-            //If we see that a child is a Terminal, then we add to list
-            // Else we recursively call addChild()
+            childrenList.add(cNode.get(i));
         }
     }
 
