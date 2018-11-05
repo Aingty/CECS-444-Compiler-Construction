@@ -25,10 +25,6 @@ public class Rule
         rules.put(6,"parens1,Varlist,parens2");
         rules.put(7,"Varitem,semi,Varlist");
         rules.put(8,"eps");
-        rules.put(9,"Vardecl");
-        rules.put(10,"Vardecl equal Varinit");
-        rules.put(11,"Classdecl");
-        rules.put(12,"Classdef");
         rules.put(13,"Simplekind,Varspec");
         rules.put(14,"Basekind");
         rules.put(15,"Classid");
@@ -36,8 +32,6 @@ public class Rule
         rules.put(17,"float");
         rules.put(18,"string");
         rules.put(19,"id");
-        rules.put(20,"Varid");
-        rules.put(21,"Arrspec");
         rules.put(22,"Deref_id");
         rules.put(23,"id");
         rules.put(24,"Varid,KKint");
@@ -46,8 +40,6 @@ public class Rule
         rules.put(27,"aster");
         rules.put(28,"Expr");
         rules.put(29,"BBexpres");
-        rules.put(30,"brace1,Exprlist,brace2");
-        rules.put(31,"brace1,brace2");
         rules.put(32,"Expr,Moreexprs");
         rules.put(33,"comma,Exprlist");
         rules.put(34,"eps");
@@ -75,23 +67,17 @@ public class Rule
         rules.put(56,"kwdfcn,Fcnid,PParmlist,RetKind");
         rules.put(57,"id");
         rules.put(58,"Kind");
-        rules.put(59,"parens1,Varspecs,parens2");
-        rules.put(60,"PPonly");
         rules.put(61,"Varspec,More_varspecs");
         rules.put(62,"comma,Varspecs");
         rules.put(63,"eps");
         rules.put(64,"parens1,parens2");
         rules.put(65,"Stmt,semi,Stmts");
         rules.put(66,"eps");
-        rules.put(67,"Stasgn");
-        rules.put(68,"Fcall");
         rules.put(69,"Stif");
         rules.put(70,"Stwhile");
         rules.put(71,"Stprint");
         rules.put(72,"Strtn");
         rules.put(73,"Lval,equal,Expr");
-        rules.put(74,"Varid");
-        rules.put(75,"Aref");
         rules.put(76,"Deref_id");
         rules.put(77,"Varid,KKexpr");
         rules.put(78,"bracket1,Expr,bracket2");
@@ -111,7 +97,6 @@ public class Rule
         rules.put(92,"Rterm");
         rules.put(93,"Rterm,Opadd,Term");
         rules.put(94,"Term");
-        rules.put(95,"Term,Opmul,Fact");
         rules.put(96,"Fact");
         rules.put(97,"Basekind");
         rules.put(98,"Lval");
@@ -132,6 +117,38 @@ public class Rule
         rules.put(113,"aster");
         rules.put(114,"slash");
         rules.put(115,"caret");
+
+        // Left Factor Rules Starts HERE!//
+        rules.put(200,"Varitem_A,Varitem_B");
+        rules.put(201,"Vardecl");
+        rules.put(203,"equal,Varinit");
+        rules.put(204,"Varitem_C,Varitem_D");
+        rules.put(205,"Classdecl");
+        rules.put(207,"BBClassitems,Classmom,Interfaces");
+        rules.put(208,"Varspec_A,Varspec_B");
+        rules.put(209,"Varid");
+        rules.put(211,"KKint");
+
+        rules.put(300,"brace1,BBexprs_A");
+        rules.put(301,"Exprlist,brace2");
+        rules.put(302,"brace2");
+
+        rules.put(400,"PParmlist_A,PParmlist_B");
+        rules.put(401,"parens1");
+        rules.put(403,"PPonly");
+        rules.put(404,"Stmt_A,Stmt_B");
+        rules.put(405,"Stasgn");
+        rules.put(407,"Fcall");
+
+        rules.put(500,"Lval_A,Lval_B");
+        rules.put(501,"Varid");
+        rules.put(503,"KKexpr");
+        rules.put(504,"Strtn_A,Strtn_B");
+        rules.put(505,"return");
+        rules.put(506,"Expr");
+
+        rules.put(600,"Fact,Term_Q");
+        rules.put(602,"Opmul Fact Term_Q");
     }
  
     public String getRule(int keyNum)
