@@ -15,20 +15,18 @@ public class Node
 {
     private ArrayList<Node> childrenList;
     private String value;
+    private int nodeID;
 
-    public Node(String v)
+    public Node(String v, int givenID)
     {
         value = v;
+        nodeID = givenID;
         childrenList = new ArrayList<Node>();
     }
 
-    // Passing ArrayList due to assumption that children are build already
-    public void addChild(ArrayList<Node> cNode)
+    public void addChild(Node cNode)
     {
-        for (int i = 0; i < cNode.size(); i++)
-        {
-            childrenList.add(cNode.get(i));
-        }
+        childrenList.add(cNode);
     }
 
     public String getValue()
