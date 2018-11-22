@@ -64,6 +64,7 @@ public class Main
 			else if (lexer.getToken(stack.peek()) != 99)
 			{
 				System.out.println("ERROR!!!: TOP of Stack is a TERMINAL, that doesn't match FRONT of Queue (M2)");
+				System.out.println("\tAfter this character: " + queue.peek());
 				System.exit(0);
 			}
 
@@ -72,7 +73,7 @@ public class Main
 			// M4
 			else
 			{
-				
+				Node top = new Node()
 			}
 			
 		}
