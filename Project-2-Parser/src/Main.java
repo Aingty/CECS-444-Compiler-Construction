@@ -23,6 +23,9 @@ public class Main
 		Lexicon lexer = new Lexicon();
 		Parser parser = new Parser();
 
+		// Integer used to give unique ID
+		int givenID = 0;
+
 		String lineTest = "prog main { ";
 
 		// @parsedString is used to get an arraylist of word in a line
@@ -61,7 +64,7 @@ public class Main
 			}
 			
 			// M2E
-			else if (lexer.getToken(stack.peek()) != 99)
+			else if (lexer.getToken(stack.peek()) != 99 && lexer.getToken(stack.peek()) != 2)
 			{
 				System.out.println("ERROR!!!: TOP of Stack is a TERMINAL, that doesn't match FRONT of Queue (M2)");
 				System.out.println("\tAfter this character: " + queue.peek());
@@ -73,9 +76,25 @@ public class Main
 			// M4
 			else
 			{
-				Node top = new Node()
+				// Getting the string arraylist of a rule given by the LL Table
+				ArrayList<String> temp = lexer.parser(parser.getRule(parser.getRuleNum(stack.peek() + " " + queue.peek())));
+				
+				Node top = new Node(stack.pop(), givenID);
+				givenID++;
+				for (int i = 0; i < temp.size(); i++)
+				{
+					Node childTemp = new Node(temp.get(i), givenID);
+					givenID++;
+					top.addChild(childTemp);
+					stack.push(temp.get(temp.size()-i-1));
+				}
+				nodeList.add(top);
 			}
-			
+			for (int i = 0; i < nodeList.size(); i++)
+			{
+				System.out.print(nodeList.get(i).getValue() + " ");
+			}
+			System.out.println();
 		}
 	}
 }
