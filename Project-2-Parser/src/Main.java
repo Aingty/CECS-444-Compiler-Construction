@@ -26,7 +26,7 @@ public class Main
 		// Integer used to give unique ID
 		int givenID = 0;
 
-		String lineTest = "prog main { ";
+		String lineTest = "prog main { print( \"ASCII:\", \" A= \", 65, \" Z= \", 90 ); }";
 
 		// @parsedString is used to get an arraylist of word in a line
 		ArrayList<String> parsedString = lexer.parser(lineTest);
@@ -45,6 +45,7 @@ public class Main
 		{
 			queue.add(parsedString.get(i));
 		}
+		queue.add("$"); // Adding the end of file symbol
 
 		// LL Parser Mechanic
 		while (!stack.empty())
@@ -55,6 +56,7 @@ public class Main
 				if (lexer.getToken(stack.peek()) == 0) // Top == $
 				{
 					System.out.println("WIN!!!");
+					System.exit(0);
 				}
 				else
 				{
@@ -64,7 +66,7 @@ public class Main
 			}
 			
 			// M2E
-			else if (lexer.getToken(stack.peek()) != 99 && lexer.getToken(stack.peek()) != 2)
+			else if (Character.isLowerCase(stack.peek().charAt(0)))
 			{
 				System.out.println("ERROR!!!: TOP of Stack is a TERMINAL, that doesn't match FRONT of Queue (M2)");
 				System.out.println("\tAfter this character: " + queue.peek());
@@ -83,18 +85,25 @@ public class Main
 				givenID++;
 				for (int i = 0; i < temp.size(); i++)
 				{
-					Node childTemp = new Node(temp.get(i), givenID);
-					givenID++;
-					top.addChild(childTemp);
-					stack.push(temp.get(temp.size()-i-1));
+					if (temp.get(i).equals("eps"))
+					{
+						continue;
+					}
+					else
+					{
+						Node childTemp = new Node(temp.get(i), givenID);
+						givenID++;
+						top.addChild(childTemp);
+						stack.push(temp.get(temp.size()-i-1));
+					}
 				}
 				nodeList.add(top);
 			}
-			for (int i = 0; i < nodeList.size(); i++)
-			{
-				System.out.print(nodeList.get(i).getValue() + " ");
-			}
-			System.out.println();
+			// for (int i = 0; i < nodeList.size(); i++)
+			// {
+			// 	System.out.print(nodeList.get(i).getValue() + " ");
+			// }
+			System.out.println(stack.peek() + " " + queue.peek());
 		}
 	}
 }
