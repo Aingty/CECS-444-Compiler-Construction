@@ -5,9 +5,6 @@
         Aingty Eung             aingtyeung@yahoo.com
         Angela Flores           Angfl97@gmail.com
         Matthew Nguyen          matthewvietnguyen@gmail.com
-
-    Description:
-        This is the Parser class.....
 */
 import java.util.*;
 
@@ -234,13 +231,15 @@ public class Parser
         LLTable.put("Fcndefs main",54);
 
         // Matthew's Part
-        LLTable.put("Stmts {",66);
+        LLTable.put("Stmts }",66);
+        LLTable.put("Stmts =",65);
         LLTable.put("Stmts id",65);
         LLTable.put("Stmts *",65);
         LLTable.put("Stmts if",65);
         LLTable.put("Stmts while",65);
         LLTable.put("Stmts print",65);
         LLTable.put("Stmts return",65);
+        LLTable.put("Stmt =",404);
         LLTable.put("Stmt id",404);
         LLTable.put("Stmt *",67);
         LLTable.put("Stmt if", 69);
@@ -256,14 +255,29 @@ public class Parser
         LLTable.put("Lval id",500);
         LLTable.put("Lval *",73);
         LLTable.put("Lval_A id",501);
+        LLTable.put("Lvar_B }",502);
         LLTable.put("Lval_B [",503);
+        LLTable.put("Lval_B )",502);
+        LLTable.put("Lval_B ;",502);
+        LLTable.put("Lval_B =",502);
+        LLTable.put("Lval_B ]",502);
+        LLTable.put("Lval_B *",502);
+        LLTable.put("Lval_B /",502);
+        LLTable.put("Lval_B ^",502);
+        LLTable.put("Lval_B ==",502);
+        LLTable.put("Lval_B !=",502);
+        LLTable.put("Lval_B <=",502);
+        LLTable.put("Lval_B >=",502);
+        LLTable.put("Lval_B <",502);
+        LLTable.put("Lval_B >",502);
+        LLTable.put("Lval_B +",502);
+        LLTable.put("Lval_B -",502);
         LLTable.put("Aref id",77);
         LLTable.put("KKexpr [",78);
         LLTable.put("Fcall id",79);
         LLTable.put("PPexprs (",504);
         LLTable.put("PPexprs_A (",505);
         LLTable.put("PPexprs_B (",506);
-        LLTable.put("PPexprs_B )",507); //follow set
         LLTable.put("PPexprs_B =",506);
         LLTable.put("PPexprs_B int",506);
         LLTable.put("PPexprs_B float",506);
@@ -280,6 +294,7 @@ public class Parser
         LLTable.put("PPexprs_B angle2",506);
         LLTable.put("PPexprs_B +",506);
         LLTable.put("PPexprs_B -",506);
+        LLTable.put("PPexprs_B )",507); //follow set
         LLTable.put("Stif if",81);
         LLTable.put("Elsepart semi",85); //follow set
         LLTable.put("Elsepart elseif",83);
@@ -287,6 +302,23 @@ public class Parser
         LLTable.put("Stwhile while",86);
         LLTable.put("Stprint print",87);
         LLTable.put("Strtn return",508);
+        LLTable.put("Strtn (",508);
+        LLTable.put("Strtn int",508);
+        LLTable.put("Strtn float",508);
+        LLTable.put("Strtn string",508);
+        LLTable.put("Strtn id",508);
+        LLTable.put("Strtn *",508);
+        LLTable.put("Strtn /",508);
+        LLTable.put("Strtn ^",508);
+        LLTable.put("Strtn *",508);
+        LLTable.put("Strtn opeq",508);
+        LLTable.put("Strtn opne",508);
+        LLTable.put("Strtn ople",508);
+        LLTable.put("Strtn opge",508);
+        LLTable.put("Strtn angle1",508);
+        LLTable.put("Strtn angle2",508);
+        LLTable.put("Strtn +",508);
+        LLTable.put("Strtn -",508);
         LLTable.put("Strtn_A return",509);
         LLTable.put("Strtn_B (",510);
         LLTable.put("Strtn_B int",510);
@@ -305,6 +337,113 @@ public class Parser
         LLTable.put("Strtn_B angle2",510);
         LLTable.put("Strtn_B +",510);
         LLTable.put("Strtn_B -",510);
+        
+        // Darian's Part
+        LLTable.put("PPexpr (", 90);
+        LLTable.put("Expr id", 602);
+        LLTable.put("Expr (", 602);
+        LLTable.put("Expr int", 602);
+        LLTable.put("Expr float", 602);
+        LLTable.put("Expr string", 602);
+        LLTable.put("Expr id", 602);
+        LLTable.put("Expr *", 602);
+        LLTable.put("Expr &", 602);
+        LLTable.put("Expr_Q ]", 600);
+        LLTable.put("Expr_Q )", 600);
+        LLTable.put("Expr_Q ;", 600);
+        LLTable.put("Expr_Q }", 600);
+        LLTable.put("Expr_Q ,", 600);
+        LLTable.put("Expr_Q ==", 601);
+        LLTable.put("Expr_Q !=", 601);
+        LLTable.put("Expr_Q <=", 601);
+        LLTable.put("Expr_Q >=", 601);
+        LLTable.put("Expr_Q <", 601);
+        LLTable.put("Expr_Q >", 601);
+        LLTable.put("Rterm id", 606);
+        LLTable.put("Rterm (", 606);
+        LLTable.put("Rterm int", 606);
+        LLTable.put("Rterm float", 606);
+        LLTable.put("Rterm string", 606);
+        LLTable.put("Rterm id", 606);
+        LLTable.put("Rterm *", 606);
+        LLTable.put("Rterm &", 606);
+        LLTable.put("Rterm_Q ]", 604);
+        LLTable.put("Rterm_Q )", 604);
+        LLTable.put("Rterm_Q ;", 604);
+        LLTable.put("Rterm_Q }", 604);
+        LLTable.put("Rterm_Q ,", 604);
+        LLTable.put("Rterm_Q ==", 604);
+        LLTable.put("Rterm_Q !=", 604);
+        LLTable.put("Rterm_Q <=", 604);
+        LLTable.put("Rterm_Q >=", 604);
+        LLTable.put("Rterm_Q <", 604);
+        LLTable.put("Rterm_Q >", 604);
+        LLTable.put("Rterm_Q +", 605);
+        LLTable.put("Rterm_Q -", 605);
+        LLTable.put("Term id", 609);
+        LLTable.put("Term (", 609);
+        LLTable.put("Term int", 609);
+        LLTable.put("Term float", 609);
+        LLTable.put("Term string", 609);
+        LLTable.put("Term id", 609);
+        LLTable.put("Term *", 609);
+        LLTable.put("Term &", 609);
+        LLTable.put("Term_Q ]", 607);
+        LLTable.put("Term_Q )", 607);
+        LLTable.put("Term_Q ;", 607);
+        LLTable.put("Term_Q }", 607);
+        LLTable.put("Term_Q *", 608);
+        LLTable.put("Term_Q /", 608);
+        LLTable.put("Term_Q ^", 608);
+        LLTable.put("Term_Q ,", 607);
+        LLTable.put("Term_Q ==", 607);
+        LLTable.put("Term_Q !=", 607);
+        LLTable.put("Term_Q <=", 607);
+        LLTable.put("Term_Q >=", 607);
+        LLTable.put("Term_Q <", 607);
+        LLTable.put("Term_Q >", 607);
+        LLTable.put("Term_Q +", 607);
+        LLTable.put("Term_Q -", 607);
+        LLTable.put("Fact (", 101);
+        LLTable.put("Fact int", 97);
+        LLTable.put("Fact float", 97);
+        LLTable.put("Fact string", 97);
+        LLTable.put("Fact id", 610);
+        LLTable.put("Fact *", 98);
+        LLTable.put("Fact &", 99);
+        LLTable.put("Fact_A id", 611);
+        LLTable.put("Fact_B }", 612);
+        LLTable.put("Fact_B (", 613);
+        LLTable.put("Fact_B )", 612);
+        LLTable.put("Fact_B ;", 612);
+        LLTable.put("Fact_B }", 612);
+        LLTable.put("Fact_B *", 612);
+        LLTable.put("Fact_B /", 612);
+        LLTable.put("Fact_B ^", 612);
+        LLTable.put("Fact_B ,", 612);
+        LLTable.put("Fact_B :", 612);
+        LLTable.put("Fact_B ==", 612);
+        LLTable.put("Fact_B !=", 612);
+        LLTable.put("Fact_B <=", 612);
+        LLTable.put("Fact_B >=", 612);
+        LLTable.put("Fact_B <", 612);
+        LLTable.put("Fact_B >", 612);
+        LLTable.put("Fact_B +", 612);
+        LLTable.put("Fact_B -", 612);
+        LLTable.put("Addrof_id &", 102);
+        LLTable.put("Oprel ==", 103);
+        LLTable.put("Oprel !=", 104);
+        LLTable.put("Oprel <=", 106);
+        LLTable.put("Oprel >=", 107);
+        LLTable.put("Oprel <", 105);
+        LLTable.put("Oprel >", 108);
+        LLTable.put("Lthan <", 109);
+        LLTable.put("Gthan >", 110);
+        LLTable.put("Opadd +", 111);
+        LLTable.put("Opadd -", 112);
+        LLTable.put("Opmul *", 113);
+        LLTable.put("Opmul /", 114);
+        LLTable.put("Opmul ^", 115);
     }
 
     public void generateRules()
@@ -413,12 +552,15 @@ public class Parser
         // Left Factor Rules Starts HERE!//
         rules.put(200,"Varitem_A Varitem_B");
         rules.put(201,"Vardecl");
+        rules.put(202,"eps");
         rules.put(203,"= Varinit");
         rules.put(204,"Varitem_C Varitem_D");
         rules.put(205,"Classdecl");
+        rules.put(206,"eps");
         rules.put(207,"BBClassitems Classmom Interfaces");
         rules.put(208,"Varspec_A Varspec_B");
         rules.put(209,"Varid");
+        rules.put(210,"eps");
         rules.put(211,"KKint");
 
         rules.put(300,"{ BBexprs_A");
@@ -427,20 +569,39 @@ public class Parser
 
         rules.put(400,"PParmlist_A PParmlist_B");
         rules.put(401,"(");
-        rules.put(403,"PPonly");
+        rules.put(402,"Varspecs )");
+        rules.put(403,")");
         rules.put(404,"Stmt_A Stmt_B");
-        rules.put(405,"Stasgn");
-        rules.put(407,"Fcall");
+        rules.put(405,"id");
+        rules.put(406,"= Expr");
+        rules.put(407,"PPexpr");
 
         rules.put(500,"Lval_A Lval_B");
         rules.put(501,"Varid");
+        rules.put(502,"eps");
         rules.put(503,"KKexpr");
-        rules.put(504,"Strtn_A Strtn_B");
-        rules.put(505,"return");
-        rules.put(506,"Expr");
+        rules.put(504,"PPexprs_A PPexprs_B");
+        rules.put(505,"(");
+        rules.put(506,"Exprlist )");
+        rules.put(507,")");
+        rules.put(508,"Strtn_A Strtn_B");
+        rules.put(509,"return");
+        rules.put(510,"Expr");
+        rules.put(511,"eps");
 
-        rules.put(600,"Fact Term_Q");
-        rules.put(602,"Opmul Fact Term_Q");
+        rules.put(600,"eps");
+        rules.put(601,"Oprel Rterm Expr_Q");
+        rules.put(602,"Rterm Expr_Q");
+        rules.put(604,"eps");
+        rules.put(605,"Opadd Term Rterm_Q");
+        rules.put(606,"Term Rterm_Q");
+        rules.put(607,"eps");
+        rules.put(608,"Opmul Fact Term_Q");
+        rules.put(609,"Fact Term_Q");
+        rules.put(610,"Fact_A Fact_B");
+        rules.put(611,"id");
+        rules.put(612,"Lval_B");
+        rules.put(613,"PPexprs");
     }
 
     public int getRuleNum(String key)
