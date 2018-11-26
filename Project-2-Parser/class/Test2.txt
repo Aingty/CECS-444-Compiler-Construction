@@ -1,0 +1,11 @@
+prog main { //do some math and tell an unrelated joke.
+	a = 0;
+	b = 1;
+	c = 2;
+	d = 3;
+	e = a + b;
+	f = c * d;
+	print("a + b is: ", e);
+	print("c * d is: ", f);
+	print("Nobody expects the Spanish Inquisition.");
+}

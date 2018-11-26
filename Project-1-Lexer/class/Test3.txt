@@ -1,6 +1,0 @@
-prog main { // Find the hypotenuse of a right triangle.  
-	print( "Input legs> " );  
-	a = input( int );  
-	b = input( int );  
-	print( "Hypotenuse= ", ( a * a + b * b ) ^ 0.5 );
-}
