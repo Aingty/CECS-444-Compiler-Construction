@@ -1,7 +1,0 @@
-prog main { // Find the circumference of a circle.  
-    pi = 3.14;  
-    print( "Input radius> " );  
-    rx = input ( float );  
-    circum = 2 * pi * rx;  
-    print( "Circumf= ", circum );
-}

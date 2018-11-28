@@ -1,9 +1,0 @@
-int main() {
-      Lexicon english("EnglishWords.txt");
-      for (string word : english) {
-         if (word.length() == 2) {
-            cout << word << endl;
-         }
-      }
-      return 0;
-   }
