@@ -110,7 +110,8 @@ public class Main
 
 			// LL Parser Mechanic
 			while (!stack.empty())
-			{				
+			{	
+				System.out.println(stack.peek().getValue() + ", " + queue.peek());			
 				// M4
 				if (Character.isUpperCase(stack.peek().getValue().charAt(0)))
 				{
@@ -171,6 +172,7 @@ public class Main
 
 			}
 
+
 			// Converting to AST
 			System.out.println("Converting from PST to AST");
 			for (int i = 0; i < nodeList.size(); i++)
@@ -185,7 +187,7 @@ public class Main
 							Node newChild = childrenTemp.get(j);
 							for (int k = 0; k < childrenTemp.size(); k++)
 							{
-								if (k != j)
+								if ((k != j) && Character.isUpperCase(childrenTemp.get(k).getValue().charAt(0)))
 								{
 									newChild.addChild(childrenTemp.get(k));
 								}
@@ -213,7 +215,7 @@ public class Main
 			}
 			System.out.println("-----------------------------------------");
 			// Printing out the Abstact TREE
-			System.out.println("Abstract Tree:");
+			System.out.println("\nAbstract Tree:");
 			for (int i = 0; i < nodeList1.size(); i++)
 			{
 				System.out.println("(Rule: " + nodeList1.get(i).getValue() + ", ID: " + nodeList1.get(i).getID() + ")");

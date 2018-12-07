@@ -295,8 +295,8 @@ public class Parser
         LLTable.put("PPexprs_B +",506);
         LLTable.put("PPexprs_B -",506);
         LLTable.put("PPexprs_B )",507); //follow set
-        LLTable.put("Stif if",81);
-        LLTable.put("Elsepart semi",85); //follow set
+        LLTable.put("Stif if",82);
+        LLTable.put("Elsepart ;",85); //follow set
         LLTable.put("Elsepart elseif",83);
         LLTable.put("Elsepart else",84);
         LLTable.put("Stwhile while",86);
@@ -345,7 +345,6 @@ public class Parser
         LLTable.put("Expr int", 602);
         LLTable.put("Expr float", 602);
         LLTable.put("Expr string", 602);
-        LLTable.put("Expr id", 602);
         LLTable.put("Expr *", 602);
         LLTable.put("Expr &", 602);
         LLTable.put("Expr_Q ]", 600);
@@ -364,7 +363,6 @@ public class Parser
         LLTable.put("Rterm int", 606);
         LLTable.put("Rterm float", 606);
         LLTable.put("Rterm string", 606);
-        LLTable.put("Rterm id", 606);
         LLTable.put("Rterm *", 606);
         LLTable.put("Rterm &", 606);
         LLTable.put("Rterm_Q ]", 604);
