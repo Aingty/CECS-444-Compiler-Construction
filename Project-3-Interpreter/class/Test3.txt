@@ -1,0 +1,8 @@
+prog main {
+	a = 0;
+	if (a < 2)
+	{
+		a = 3;
+	};
+	print("a");
+}

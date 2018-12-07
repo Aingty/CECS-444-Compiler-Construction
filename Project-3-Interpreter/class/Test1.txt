@@ -1,1 +1,1 @@
-prog main { print( "ASCII:", " A= ", 65, " Z= ", 90 ); }
+prog main { print( "ASCII:", " A= ", 65, " Z= " ); }
