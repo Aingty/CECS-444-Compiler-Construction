@@ -5,6 +5,12 @@
         Aingty Eung             aingtyeung@yahoo.com
         Angela Flores           Angfl97@gmail.com
         Matthew Nguyen          matthewvietnguyen@gmail.com
+
+    Description:
+        This is the Parser class with a private HashMap that is used to represent 
+        the LLTable of the compiler and a private HashMap to hold all the rules of
+        the grammar. The purpose of this class is to store the grammar rules of the language
+        and return them upon request
 */
 import java.util.*;
 
@@ -13,6 +19,7 @@ public class Parser
     private HashMap<String,Integer> LLTable = new HashMap<String,Integer>();
     private HashMap<Integer,String> rules = new HashMap<Integer,String>();
     
+    //constructor of the Parser class
     public Parser()
     {
         LLTable.put("Pgm prog",1);
@@ -445,7 +452,7 @@ public class Parser
         LLTable.put("Opmul /", 114);
         LLTable.put("Opmul ^", 115);
     }
-
+    //method to store all the rules associated with the grammar into the rules HashMap
     public void generateRules()
     {
         rules.put(1,"prog Vargroup Fcndefs Main");
@@ -604,11 +611,13 @@ public class Parser
         rules.put(613,"PPexprs");
     }
 
+    //getter method to return key (rule number)
     public int getRuleNum(String key)
     {
         return LLTable.get(key);
     }
 
+    //getter method to return a rule
     public String getRule(int keyNum)
     {
         return rules.get(keyNum);

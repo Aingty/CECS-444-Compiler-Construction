@@ -5,6 +5,13 @@
         Aingty Eung             aingtyeung@yahoo.com
         Angela Flores           Angfl97@gmail.com
         Matthew Nguyen          matthewvietnguyen@gmail.com
+
+    Description:
+        This is the ScopeNode class with a string to hold the name of the ScopeNode, 
+        an ArrayList to store the ScopeNodes associated as children of the current 
+        ScopeNode, and an ArrayList to store the symbol table associated with the 
+        ScopeNode. The purpose for this class is to define the nodes that will be
+        used to model a complete SCT
 */
 
 import java.util.*;
