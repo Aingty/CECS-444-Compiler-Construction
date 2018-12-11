@@ -17,7 +17,7 @@ public class Tree
         root = null;
     }
 
-    public boolean add(Node child, int parentID)
+    public void add(Node child, int parentID)
     {
         if (root == null)
         {
@@ -25,8 +25,12 @@ public class Tree
         }
         else
         {
-            return false;
+            addToParent(root, child, parentID);
         }
-        return false;
+    }
+
+    private void addToParent(Node pNode, Node cNode, int parentID)
+    {
+        if ()
     }
 }
