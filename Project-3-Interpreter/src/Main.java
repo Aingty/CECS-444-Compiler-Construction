@@ -20,6 +20,7 @@ public class Main
 		Scanner in = new Scanner(System.in);
 		Scanner reader;
 		String line, inputFile, userRespone;
+		
 		// Boolean for keeping the program running till user's quit
 		boolean keepGoing = true;
 
@@ -34,10 +35,13 @@ public class Main
 			Lexicon lexer = new Lexicon();
 			Parser parser = new Parser();
 
-			// @nodeList is used to keep track of the PST
-			ArrayList<Node> nodeList = new ArrayList<Node>();
+			// @PST is tree used to be the Parsed Syntax Tree of the program
+			Tree PST = new Tree();
 			// @nodeList1 is used to be converted from PST to AST
 			ArrayList<Node> nodeList1 = new ArrayList<Node>();
+
+			// Node for Top of stack
+			Node top;
 
 			// Integer used to give unique ID
 			int givenID = 0;
@@ -75,8 +79,12 @@ public class Main
 			// Always the intial push to the Stack
 			stack.push(new Node("$",givenID));
 			givenID++;
-			stack.push(new Node("Pgm",givenID));
+			PST.add(stack.peek(),0);
+			top = new Node("Pgm",givenID);
 			givenID++;
+			top.setParent(stack.peek());
+			stack.push(top);
+			PST.add(top, top.getParent().getID());
 
 			// Generate the rule table for parser
 			parser.generateRules();
@@ -111,14 +119,14 @@ public class Main
 			// LL Parser Mechanic
 			while (!stack.empty())
 			{	
-				System.out.println(stack.peek().getValue() + ", " + queue.peek());			
+				System.out.println("Top of Stack: " + stack.peek().getValue() + " QUEUE: " + queue.peek());
 				// M4
 				if (Character.isUpperCase(stack.peek().getValue().charAt(0)))
 				{
 					// Getting the string arraylist of a rule given by the LL Table
 					String[] temp = parser.getRule(parser.getRuleNum(stack.peek().getValue() + " " + queue.peek())).split(" ");
 					
-					Node top = stack.pop();
+					top = stack.pop();
 					ArrayList<Node> tempChildList = new ArrayList<Node>();
 					// Creating a temporary list of children for storing later
 					for (int i = 0; i < temp.length; i++)
@@ -131,6 +139,7 @@ public class Main
 						{
 							Node childTemp = new Node(temp[i], givenID);
 							givenID++;
+							childTemp.setParent(top);
 							tempChildList.add(childTemp);
 						}
 					}
@@ -140,10 +149,10 @@ public class Main
 						for (int i = 0; i < tempChildList.size(); i++)
 						{
 							top.addChild(tempChildList.get(i));
+							PST.add(tempChildList.get(i), top.getID());
 							stack.push(tempChildList.get(tempChildList.size()-i-1));
 						}
 					}
-					nodeList.add(top);
 				}
 				// M1
 				else if (lexer.getToken(stack.peek().getValue()) == lexer.getToken(queue.peek()))
@@ -167,68 +176,69 @@ public class Main
 					System.out.println("\tAfter this character: " + queue.peek());
 					System.exit(0);
 				}
-
+				//PST.printTree();
 				// M3E : We don't need to do this becasue our cell is never EMPTY!!!!
 
 			}
 
+			// // Converting to AST
+			// System.out.println("Converting from PST to AST");
+			// for (int i = 0; i < nodeList.size(); i++)
+			// {
+			// 	ArrayList<Node> childrenTemp = nodeList.get(i).getChildren();
+			// 	if (childrenTemp != null)
+			// 	{
+			// 		for (int j = 0; j < childrenTemp.size(); j++)
+			// 		{
+			// 			if (!Character.isUpperCase(childrenTemp.get(j).getValue().charAt(0)))
+			// 			{
+			// 				Node newChild = childrenTemp.get(j);
+			// 				for (int k = 0; k < childrenTemp.size(); k++)
+			// 				{
+			// 					if ((k != j) && Character.isUpperCase(childrenTemp.get(k).getValue().charAt(0)))
+			// 					{
+			// 						newChild.addChild(childrenTemp.get(k));
+			// 					}
+			// 				}
+			// 				nodeList1.add(newChild);
+			// 				break;
+			// 			}
+			// 		}
+			// 	}
+			// }
+			// // Printing out the Parse TREE 
+			// System.out.println("Parsed Tree:");
+			// for (int i = 0; i < nodeList.size(); i++)
+			// {
+			// 	System.out.println("(Rule: " + nodeList.get(i).getValue() + ", ID: " + nodeList.get(i).getID() + ")");
+			// 	ArrayList<Node> childrenTemp = nodeList.get(i).getChildren();
+			// 	if (childrenTemp != null)
+			// 	{
+			// 		for (int j = 0; j < childrenTemp.size(); j++)
+			// 		{	
+			// 			System.out.print("\t|\n\t->(Rule: " + childrenTemp.get(j).getValue() + ", ID: " + childrenTemp.get(j).getID() + ")\n");
+			// 		}
+			// 	}
+			// 	System.out.println();
+			// }
+			// System.out.println("-----------------------------------------");
+			// // Printing out the Abstact TREE
+			// System.out.println("\nAbstract Tree:");
+			// for (int i = 0; i < nodeList1.size(); i++)
+			// {
+			// 	System.out.println("(Rule: " + nodeList1.get(i).getValue() + ", ID: " + nodeList1.get(i).getID() + ")");
+			// 	ArrayList<Node> childrenTemp = nodeList1.get(i).getChildren();
+			// 	if (childrenTemp != null)
+			// 	{
+			// 		for (int j = 0; j < childrenTemp.size(); j++)
+			// 		{	
+			// 			System.out.print("\t|\n\t->(Rule: " + childrenTemp.get(j).getValue() + ", ID: " + childrenTemp.get(j).getID() + ")\n");
+			// 		}
+			// 	}
+			// 	System.out.println();
+			// }
 
-			// Converting to AST
-			System.out.println("Converting from PST to AST");
-			for (int i = 0; i < nodeList.size(); i++)
-			{
-				ArrayList<Node> childrenTemp = nodeList.get(i).getChildren();
-				if (childrenTemp != null)
-				{
-					for (int j = 0; j < childrenTemp.size(); j++)
-					{
-						if (!Character.isUpperCase(childrenTemp.get(j).getValue().charAt(0)))
-						{
-							Node newChild = childrenTemp.get(j);
-							for (int k = 0; k < childrenTemp.size(); k++)
-							{
-								if ((k != j) && Character.isUpperCase(childrenTemp.get(k).getValue().charAt(0)))
-								{
-									newChild.addChild(childrenTemp.get(k));
-								}
-							}
-							nodeList1.add(newChild);
-							break;
-						}
-					}
-				}
-			}
-			// Printing out the Parse TREE 
-			System.out.println("Parsed Tree:");
-			for (int i = 0; i < nodeList.size(); i++)
-			{
-				System.out.println("(Rule: " + nodeList.get(i).getValue() + ", ID: " + nodeList.get(i).getID() + ")");
-				ArrayList<Node> childrenTemp = nodeList.get(i).getChildren();
-				if (childrenTemp != null)
-				{
-					for (int j = 0; j < childrenTemp.size(); j++)
-					{	
-						System.out.print("\t|\n\t->(Rule: " + childrenTemp.get(j).getValue() + ", ID: " + childrenTemp.get(j).getID() + ")\n");
-					}
-				}
-				System.out.println();
-			}
-			System.out.println("-----------------------------------------");
-			// Printing out the Abstact TREE
-			System.out.println("\nAbstract Tree:");
-			for (int i = 0; i < nodeList1.size(); i++)
-			{
-				System.out.println("(Rule: " + nodeList1.get(i).getValue() + ", ID: " + nodeList1.get(i).getID() + ")");
-				ArrayList<Node> childrenTemp = nodeList1.get(i).getChildren();
-				if (childrenTemp != null)
-				{
-					for (int j = 0; j < childrenTemp.size(); j++)
-					{	
-						System.out.print("\t|\n\t->(Rule: " + childrenTemp.get(j).getValue() + ", ID: " + childrenTemp.get(j).getID() + ")\n");
-					}
-				}
-				System.out.println();
-			}
+			PST.printTree();
 
 			System.out.print("\n\nWould you like to choose another file? (Y to continue)\n\tYour Input: ");
             userRespone = in.nextLine();

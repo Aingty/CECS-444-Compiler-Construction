@@ -31,6 +31,46 @@ public class Tree
 
     private void addToParent(Node pNode, Node cNode, int parentID)
     {
-        if ()
+        if (pNode.getID() == parentID)
+        {
+            pNode.addChild(cNode);
+        }
+        else
+        {
+            for (Node child : pNode.getChildren())
+            {
+                addToParent(child, cNode, parentID);
+            }
+        }
+    }
+
+    public void printTree()
+    {
+        if (root == null)
+        {
+            System.out.println("Tree is EMPTY!!!!");
+        }
+        else
+        {
+            print(root);
+        }
+    }
+
+    private void print(Node pNode)
+    {
+        System.out.println("(Rule: " + pNode.getValue() + ", ID: " + pNode.getID() + ")");
+        ArrayList<Node> childrenTemp = pNode.getChildren();
+        if (childrenTemp != null)
+        {
+            for (int j = 0; j < childrenTemp.size(); j++)
+            {
+                System.out.print("\t|\n\t->(Rule: " + childrenTemp.get(j).getValue() + ", ID: " + childrenTemp.get(j).getID() + ")\n");
+            }
+            System.out.println();
+            for (int j = 0; j < childrenTemp.size(); j++)
+            {
+                print(childrenTemp.get(j));
+            }
+        }
     }
 }
