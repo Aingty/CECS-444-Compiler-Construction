@@ -1,0 +1,37 @@
+prog main { //a lot of if, else
+	a = 0;
+	b = 1;
+	c = 2;
+	d = 0;
+	if(a > 1)
+	{
+		c = 0; //absolutely needed for some reason. Needs a line before nested if statements.
+		if(b > 1)
+		{
+			a = 0;
+			b = 1;
+		}
+	
+		else
+		{
+			c = 0;
+			d = 1;
+		};
+	}
+	
+	else
+	{
+		print("That's a lot of if else statements.");
+		if(a > 1)
+		{
+			a = 0;
+			b = 1;
+		}
+	
+		else
+		{
+			c = 0;
+			d = 1;
+		};
+	};
+} 
