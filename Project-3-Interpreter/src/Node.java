@@ -15,6 +15,7 @@ public class Node
     private int nodeID;
     private Node parent;
 
+    // Constructor without Parent
     public Node(String v, int givenID)
     {
         value = v;
@@ -23,6 +24,15 @@ public class Node
         parent = null;
     }
 
+    // Constructor with Parent
+    public Node(String v, int givenID, Node givenParent)
+    {
+        value = v;
+        nodeID = givenID;
+        childrenList = new ArrayList<Node>();
+        parent = givenParent;
+    }
+    
     public void setParent(Node pNode)
     {
         this.parent = pNode;

@@ -77,7 +77,7 @@ public class Main
             }
 
 			// Always the intial push to the Stack
-			stack.push(new Node("$",givenID));
+			stack.push(new Node("$",givenID, new Node("$",givenID)));
 			givenID++;
 			PST.add(stack.peek(),0);
 			top = new Node("Pgm",givenID);
@@ -119,7 +119,7 @@ public class Main
 			// LL Parser Mechanic
 			while (!stack.empty())
 			{	
-				System.out.println("Top of Stack: " + stack.peek().getValue() + " QUEUE: " + queue.peek());
+				System.out.println("Top of Stack: " + stack.peek().getValue() + " QUEUE: " + queue.peek() + " ID: "+givenID);
 				// M4
 				if (Character.isUpperCase(stack.peek().getValue().charAt(0)))
 				{
@@ -148,9 +148,11 @@ public class Main
 					{
 						for (int i = 0; i < tempChildList.size(); i++)
 						{
-							top.addChild(tempChildList.get(i));
-							PST.add(tempChildList.get(i), top.getID());
 							stack.push(tempChildList.get(tempChildList.size()-i-1));
+						}
+						for (int i = 0; i < tempChildList.size(); i++)
+						{
+							PST.add(tempChildList.get(i), top.getID());
 						}
 					}
 				}
@@ -239,15 +241,15 @@ public class Main
 			// }
 
 			PST.printTree();
-
-			System.out.print("\n\nWould you like to choose another file? (Y to continue)\n\tYour Input: ");
-            userRespone = in.nextLine();
-            if (!userRespone.equalsIgnoreCase("Y"))
-            {
-                System.out.println("Thank you! Good Bye!!!");
-                keepGoing = false;
-            }
-			System.out.println("\n--------------------------------------------\n");
+			keepGoing = false;
+			// System.out.print("\n\nWould you like to choose another file? (Y to continue)\n\tYour Input: ");
+            // userRespone = in.nextLine();
+            // if (!userRespone.equalsIgnoreCase("Y"))
+            // {
+            //     System.out.println("Thank you! Good Bye!!!");
+            //     keepGoing = false;
+            // }
+			// System.out.println("\n--------------------------------------------\n");
 		}
 	}
 }

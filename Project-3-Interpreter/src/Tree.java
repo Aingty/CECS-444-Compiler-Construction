@@ -29,17 +29,30 @@ public class Tree
         }
     }
 
-    private void addToParent(Node pNode, Node cNode, int parentID)
+    private boolean addToParent(Node pNode, Node cNode, int parentID)
     {
         if (pNode.getID() == parentID)
         {
             pNode.addChild(cNode);
+            return true;
         }
         else
         {
-            for (Node child : pNode.getChildren())
+            if (pNode.getChildren().isEmpty())
             {
-                addToParent(child, cNode, parentID);
+                return false;
+            }
+            else
+            {
+                for (Node child : pNode.getChildren())
+                {
+                    boolean temp = addToParent(child, cNode, parentID);
+                    if (temp)
+                    {
+                        break;
+                    }
+                }
+                return true;
             }
         }
     }
@@ -60,7 +73,8 @@ public class Tree
     {
         System.out.println("(Rule: " + pNode.getValue() + ", ID: " + pNode.getID() + ")");
         ArrayList<Node> childrenTemp = pNode.getChildren();
-        if (childrenTemp != null)
+        System.out.println(pNode.getValue()+" size: "+ childrenTemp.size());
+        if (!childrenTemp.isEmpty())
         {
             for (int j = 0; j < childrenTemp.size(); j++)
             {
