@@ -33,6 +33,7 @@ public class Tree
     {
         if (pNode.getID() == parentID)
         {
+            System.out.println("Added: " + cNode.getValue() + ":" + cNode.getID() + " to " + pNode.getValue() + ":" + pNode.getID());
             pNode.addChild(cNode);
             return true;
         }
@@ -73,7 +74,6 @@ public class Tree
     {
         System.out.println("(Rule: " + pNode.getValue() + ", ID: " + pNode.getID() + ")");
         ArrayList<Node> childrenTemp = pNode.getChildren();
-        System.out.println(pNode.getValue()+" size: "+ childrenTemp.size());
         if (!childrenTemp.isEmpty())
         {
             for (int j = 0; j < childrenTemp.size(); j++)
